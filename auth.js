@@ -1,25 +1,32 @@
 function createAuth() {
     let users = {}
-
     function registerUser(username) {
-        if (!users[username]) {
+        let userExists = false
+        for (let token in users) {
+            if (users[token].username == username) {
+                userExists = true
+                break
+            }
+        }
+        if (!userExists) {
             let token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)
-            users[username] = token
+            users[token] = {username}
             return {status: 'ok', token}
         } else return {status: 'error', reason: 'User already logged in!'}
     }
 
-    function getUsername(token) {
-        for (let username in users) {
-            if (users[username] == token) {
-                return username
-            }
-        }
+    function deleteUser(token) {
+        delete users[token]
+    }
+
+    function getUserFromToken(token) {
+        return users[token]
     }
 
     return {
         registerUser,
-        getUsername
+        getUserFromToken,
+        deleteUser,
     }
 }
 

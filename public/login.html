@@ -10,6 +10,11 @@
             height: 100%;
         }
     </style>
+    <script>
+        const urlparams = new URLSearchParams(window.location.search)
+        const reason = urlparams.get('reason')
+        if (reason) alert(reason)
+    </script>
 </head>
 <body>
     <form action="/login" method="POST" id="login" class="container">

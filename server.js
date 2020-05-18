@@ -29,26 +29,41 @@ app.post('/login', function(req, res) {
         res.cookie('token', resAuth.token)
         res.redirect('/chat')
     } else {
-        res.redirect('/')
+        res.redirect(`/?status=${resAuth.status}&reason=` + encodeURIComponent(resAuth.reason))
     }
 })
 
 app.get('/chat', function(req, res) {
     let token = req.cookies.token
     if (token) {
-        let username = auth.getUsername(token)
-        if (username) {
+        let user= auth.getUserFromToken(token)
+        if (user) {
             res.render('chat.html')
         } else res.redirect('/')
     } else res.redirect('/')
 })
 
 sockets.on('connection', socket => {
-    socket.emit('previousMessages', db.messages)
-    socket.on('sendMessage', message => {
-        db.saveMessage(message)
-        sockets.emit('receivedMessage', message)
+    let cookies = {}
+    socket.request.headers.cookie.split('; ').forEach((cookie) => {
+        cookie = cookie.split('=')
+        cookies[cookie[0]] = cookie[1]
     })
+    let user = auth.getUserFromToken(cookies.token)
+    if (cookies.token && user) {
+        socket.emit('usernameInfo', user.username)
+        socket.emit('previousMessages', db.messages)
+
+        socket.on('sendMessage', message => {
+            message.author = user.username
+            db.saveMessage(message)
+            sockets.emit('receivedMessage', message)
+        })
+
+        socket.on('disconnect', () => {
+            auth.deleteUser(cookies.token)
+        })
+    } else socket.emit('mustLoggin', true)
 });
 
 server.listen(3000, () => {console.log('Server listening on port: 3000!')})

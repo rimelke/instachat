@@ -22,6 +22,15 @@
             console.log(`Connected to server with id: ${socket.id}`)
         })
 
+        socket.on('mustLoggin', must => {
+            alert('You must signin!')
+            window.location.pathname = '/'
+        })
+
+        socket.on('usernameInfo', username => {
+            document.querySelector('#username').value = 'Logged as: ' + username
+        })
+
         socket.on('previousMessages', messages => {
             for (let message of messages) renderMessage(message)
         })
@@ -44,7 +53,7 @@
 </head>
 <body>
     <div id="chat" class="container">
-        <input type="text" class="text" id="username" placeholder="Username">
+        <input type="text" class="text" id="username" readonly placeholder="Username">
         <div id="messages"></div>
         <input type="text" class="text" id="message"  placeholder="Message">
         <input type="button" class="btn" value="Send" onclick="sendMessage()">
