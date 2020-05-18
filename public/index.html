@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io()
+
+        socket.on('connect', () => {
+            console.log(`Connected to server with id: ${socket.id}`)
+        })
+
+        socket.on('previousMessages', messages => {
+            for (let message of messages) renderMessage(message)
+        })
+
+        socket.on('receivedMessage', message => {
+            renderMessage(message)
+        })
+
+        function sendMessage() {
+            let author = document.querySelector('#username').value
+            let message = document.querySelector('#message').value
+            socket.emit('sendMessage', {author, message})
+        }
+
+        function renderMessage(message) {
+            let messagesDiv = document.querySelector('#messages')
+            messagesDiv.innerHTML += `<div class="messageTxt"><strong>${message.author}:</strong> ${message.message}</div>`
+        }
+    </script>
+</head>
+<body>
+    <div id="chat">
+        <input type="text" class="text" id="username" placeholder="Usuário">
+        <div id="messages"></div>
+        <input type="text" class="text" id="message"  placeholder="Mensagem">
+        <input type="button" class="btn" value="Enviar" onclick="sendMessage()">
+    </div>
+</body>
+</html>
