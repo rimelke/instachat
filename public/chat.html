@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #messages {
+            height: 350px;
+            width: 400px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 2px solid #DDD;
+        }
+    </style>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io()
@@ -34,11 +43,11 @@
     </script>
 </head>
 <body>
-    <div id="chat">
-        <input type="text" class="text" id="username" placeholder="Usuário">
+    <div id="chat" class="container">
+        <input type="text" class="text" id="username" placeholder="Username">
         <div id="messages"></div>
-        <input type="text" class="text" id="message"  placeholder="Mensagem">
-        <input type="button" class="btn" value="Enviar" onclick="sendMessage()">
+        <input type="text" class="text" id="message"  placeholder="Message">
+        <input type="button" class="btn" value="Send" onclick="sendMessage()">
     </div>
 </body>
 </html>

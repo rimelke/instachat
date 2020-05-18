@@ -8,7 +8,7 @@ body, html {
     box-sizing: border-box;
 }
 
-#chat {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,12 +38,4 @@ input {
 
 .btn:hover {
     background: #1d3557;
-}
-
-#messages {
-    height: 350px;
-    width: 400px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 2px solid #DDD;
 }
