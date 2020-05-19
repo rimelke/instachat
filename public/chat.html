@@ -13,6 +13,11 @@
             border-radius: 8px;
             border: 2px solid #DDD;
         }
+
+        .messageTxt {
+            font: normal 12pt Arial;
+            padding: 2px 8px;
+        }
     </style>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -47,7 +52,7 @@
 
         function renderMessage(message) {
             let messagesDiv = document.querySelector('#messages')
-            messagesDiv.innerHTML += `<div class="messageTxt"><strong>${message.author}:</strong> ${message.message}</div>`
+            messagesDiv.innerHTML += `<div class="messageTxt"><strong style="color: ${message.color};">${message.author}:</strong> ${message.message}</div>`
         }
     </script>
 </head>

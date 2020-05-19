@@ -57,6 +57,7 @@ sockets.on('connection', socket => {
         socket.on('sendMessage', message => {
             message.author = user.username
             db.saveMessage(message)
+            message.color = user.color
             sockets.emit('receivedMessage', message)
         })
 

@@ -1,0 +1,22 @@
+[
+    {
+        "author": "User1",
+        "message": "Hello!",
+        "sentAt": "2020-05-18T23:54:07.052Z"
+    },
+    {
+        "author": "User2",
+        "message": "Hi!",
+        "sentAt": "2020-05-18T23:54:55.358Z"
+    },
+    {
+        "author": "User2",
+        "message": "I'm using the instchat",
+        "sentAt": "2020-05-18T23:55:04.149Z"
+    },
+    {
+        "author": "User2",
+        "message": "Let's go talk",
+        "sentAt": "2020-05-18T23:55:09.736Z"
+    }
+]
