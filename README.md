@@ -14,7 +14,9 @@ This application has the objective to be a real time chat with message database 
  - User's name with semi-random color
 
 ## :art: Layout
-**:construction: Building... :construction:**
+<h1 align="center">
+    <img alt="Layout" title="#Layout" src="./assets/banner.png" />
+</h1>
 
 ## **:wrench:  Technologies**
  - [Node.js][node]
