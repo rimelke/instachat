@@ -15,7 +15,7 @@ This application has the objective to be a real time chat with message database 
 
 ## :art: Layout
 <h1 align="center">
-    <img alt="Layout" title="#Layout" src="./assets/banner.png" />
+    <img alt="Layout" title="#Layout" src="./assets/layout.gif" />
 </h1>
 
 ## **:wrench:  Technologies**
